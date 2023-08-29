@@ -4,7 +4,7 @@
   "description": "This application is designed to allow users to create and send booking contracts quickly/on the fly",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/quonn-bernard/contraxx-app/issues"
   },
-  "homepage": "https://github.com/quonn-bernard/contraxx-app#readme"
+  "homepage": "https://github.com/quonn-bernard/contraxx-app#readme",
+  "devDependencies": {
+    "jest": "^29.6.4"
+  }
 }
