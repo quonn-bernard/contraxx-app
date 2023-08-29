@@ -4,7 +4,7 @@
   "description": "This application is designed to allow users to create and send booking contracts quickly/on the fly",
   "main": "index.js",
   "scripts": {
-    "test": "npm test"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
