@@ -1,0 +1,19 @@
+{
+  "name": "contraxx-app",
+  "version": "1.0.0",
+  "description": "This application is designed to allow users to create and send booking contracts quickly/on the fly",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quonn-bernard/contraxx-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/quonn-bernard/contraxx-app/issues"
+  },
+  "homepage": "https://github.com/quonn-bernard/contraxx-app#readme"
+}
