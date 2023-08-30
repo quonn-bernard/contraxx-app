@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "This application is designed to allow users to create and send booking contracts quickly/on the fly",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "jest"
   },
@@ -18,5 +19,10 @@
   "homepage": "https://github.com/quonn-bernard/contraxx-app#readme",
   "devDependencies": {
     "jest": "^29.6.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1"
   }
 }
