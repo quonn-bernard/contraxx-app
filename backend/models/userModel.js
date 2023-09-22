@@ -1,5 +1,5 @@
-import mongoose from 'mongoose'
 
+import mongoose from "mongoose"
 const userSchema = mongoose.Schema({
     fname: {
         type: String,
@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
     },
     email: {
         type: String,
-        required: [true, 'Please add a name']
+        required: [true, 'Please add a email']
     },
     password: {
         type: String,

@@ -1,12 +1,19 @@
 import asyncHandler from "express-async-handler";
-import { createUserService } from "../services/userService.js";
+import { createUser } from "../services/user.js";
 import * as dotenv from "dotenv";
 dotenv.config();
 
 const registerUser = asyncHandler(async (req, res, next) => {
 
-   createUserService(req, res, next);
-   
+  const { fname, lname, email, password } = req.body
+
+  try {
+    const user = await createUser({ fname, lname, email, password });
+    if(user)
+    res.status(201).json(user)
+  } catch(error){
+    next(error)
+  }
 });
 
 export { registerUser };
