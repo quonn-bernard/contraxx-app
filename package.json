@@ -8,9 +8,6 @@
     "test": "NODE_ENV=test jest --runInBand --watchAll --detectOpenHandles",
     "dev": "NODE_ENV=development nodemon backend/index.js"
   },
-  "jest": {
-    "testEnvironment": "node"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/quonn-bernard/contraxx-app.git"
