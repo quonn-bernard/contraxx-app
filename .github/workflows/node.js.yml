@@ -3,9 +3,6 @@
 
 name: Node.js CI
 
-env:
-  CI: true 
-  
 on:
   push:
     branches: [ "main" ]
@@ -32,3 +29,5 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    env:
+      CI: true 
