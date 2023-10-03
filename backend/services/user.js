@@ -1,32 +1,30 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/userModel.js";
 import * as dotenv from "dotenv";
-import tokenGenerator from "../utils/generators/tokenGenerator.js";
+import { tokenGenerator } from "../utils/generators/tokenGenerator.js";
 import { hashedPWGenerator } from "../utils/generators/hashedPasswordGenerator.js";
 import { validateUserRegistrationInput } from "../utils/validation/inputValidation.js";
-import { APIError } from "../middleware/APIError.js";
-import { DUPLICATE_EMAIL, INCOMPLETE_INPUT } from "../constants/errorCodes.js";
+import {
+  DUPLICATE_RESOURCE_ERROR,
+  INCOMPLETE_INPUT_ERROR,
+} from "../middleware/APIError.js";
 
 dotenv.config();
 
-const createUserService = asyncHandler(async (req, res, next) => {
-  const { fname, lname, email, password } = req.body;
+const createUser = asyncHandler(async ({ fname, lname, email, password }) => {
   if (!fname || !lname || !email || !password) {
-    throw new APIError(INCOMPLETE_INPUT, "Input not complete!", 400);
+    throw new INCOMPLETE_INPUT_ERROR("Input not complete!");
   }
 
   const existingUser = await User.find({ email: email });
   if (existingUser.length !== 0) {
-    throw new APIError(
-      DUPLICATE_EMAIL,
-      "This email has already been used. Either try another email or login with this email",
-      403
+    throw new DUPLICATE_RESOURCE_ERROR(
+      "This email has already been used. Either try another email or login with this email"
     );
   }
 
   validateUserRegistrationInput({ fname, lname, email, password });
 
-  try {
     const newUser = await User.create({
       fname,
       lname,
@@ -34,14 +32,9 @@ const createUserService = asyncHandler(async (req, res, next) => {
       password: await hashedPWGenerator(password),
     });
     if (!newUser) throw new Error("Error while creating new user!");
-    res.status(201).json({
-      _id: newUser.id,
-      email: newUser.email,
-      token: tokenGenerator(newUser.id),
-    });
-  } catch (error) {
-    next(error);
-  }
+
+    return newUser
+  
 });
 
-export { createUserService };
+export { createUser };
