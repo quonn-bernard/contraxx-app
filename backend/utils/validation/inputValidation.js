@@ -39,6 +39,13 @@ export const validatePassword = (password) => {
   return passwordValidationSchema.validate(password);
 };
 
+export const validateUserLoginInput = (input) => {
+  if (!validateEmail(input.email))
+    throw new Error(`Invalid input: email address is formed incorrectly`);
+    if (!validatePassword(input.password))
+    throw new Error(`Password must include atleast 8 chars, one uppercase letter, one lowercase letter, 1 digit, cannot contain any spaces and must be less than 20 chars long!`);
+}
+
 export const validateUserRegistrationInput = (input) => {
   if (!validateName(input.fname, input.lname))
     throw new Error(`Invalid input: First name, last name or both are not formed properly`);
