@@ -31,4 +31,4 @@ jobs:
     - run: npm test
       env:
         CI: true 
-        JWT_SECRET: 758f4b59-ffbc-4356-a719-0544f0be2d2a 
+        JWT_SECRET: ${{secrets.JWT_SECRET}}
