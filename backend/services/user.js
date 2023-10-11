@@ -62,10 +62,12 @@ const authenticateUser = asyncHandler(async ({ email, password }) => {
     );
   }
 
+  const newToken = tokenGenerator(user.id)
+
   return {
     email,
     password,
-    token: tokenGenerator(user.id),
+    token: newToken,
   };
 });
 
