@@ -7,6 +7,7 @@ import {
   WRONG_PASSWORD_ERROR,
   USER_DOES_NOT_EXIST_ERROR,
 } from "../middleware/APIError.js";
+import {validateContractInput} from "../utils/validation/inputValidation.js"
 
 dotenv.config();
 
@@ -44,7 +45,7 @@ const createNewContract = asyncHandler(
       bookingduration,
       bookingaddress,
     });
-    
+
     const newContract = await Contract.create({
       fname,
       lname,
