@@ -1,9 +1,9 @@
-import { createUser } from "../../../backend/services/user.js";
+import { createUser } from "../../../../backend/services/user.js";
 import {
   connectMemoryDB,
   dropMemoryDB,
-} from "../../../backend/utils/test-utils/mongoTestingDB.js";
-import { authenticateUser } from "../../../backend/services/user.js";
+} from "../../../../backend/utils/test-utils/mongoTestingDB.js";
+import { authenticateUser } from "../../../../backend/services/user.js";
 import {
   incompleteUserInput,
   missingInput,
@@ -12,7 +12,7 @@ import {
   correctEmail,
   wrongEmail,
   fakeuser
-} from "../../../backend/utils/fixtures/fakeUser.js";
+} from "../../../../backend/utils/fixtures/fakeUser.js";
 
 beforeAll(async () => {
   await connectMemoryDB();

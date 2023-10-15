@@ -1,9 +1,9 @@
 import {
   connectMemoryDB,
   dropMemoryDB,
-} from "../../../backend/utils/test-utils/mongoTestingDB.js";
-import { createNewContract } from "../../../backend/services/contract.js";
-import { incompleteContractInfo, fakeContractInfo } from "../../../backend/utils/fixtures/fakeContract.js";
+} from "../../../../backend/utils/test-utils/mongoTestingDB.js";
+import { createNewContract } from "../../../../backend/services/contract.js";
+import { incompleteContractInfo, fakeContractInfo } from "../../../../backend/utils/fixtures/fakeContract.js";
 beforeAll(async () => {
   await connectMemoryDB();
 });
