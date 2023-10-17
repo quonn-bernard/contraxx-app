@@ -1,7 +1,7 @@
 import asyncHandler from "express-async-handler";
 import * as dotenv from "dotenv";
 import { createNewContract } from "../services/contract.js";
-import { updateAContract, archiveAContract } from "../services/contract.js";
+import { updateAContract, archiveAContract, retrieveAllContracts, retrieveAllArchivedContracts } from "../services/contract.js";
 import Contract from "../models/contractModel.js";
 import ArchivedContract from "../models/archivedContractModel.js";
 dotenv.config();
@@ -61,4 +61,22 @@ const archiveContract = asyncHandler(async (req, res, next) => {
   }
 });
 
-export { createContract, updateContract, archiveContract };
+const getContracts =  asyncHandler(async (req, res, next) => {
+    try{
+        const contracts = await retrieveAllContracts()
+        res.status(200).json(contracts)
+    } catch (error) {
+        next(error)
+    }
+})
+
+const getArchivedContracts = asyncHandler(async (req, res, next) => {
+    try{
+        const archivedContracts = await retrieveAllArchivedContracts()
+        res.status(200).json(archivedContracts)
+    } catch (error) {
+        next(error)
+    }
+})
+
+export { createContract, updateContract, archiveContract, getContracts, getArchivedContracts };
