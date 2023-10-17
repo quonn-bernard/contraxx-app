@@ -10,8 +10,6 @@ import { validateContractInput } from "../utils/validation/inputValidation.js";
 
 dotenv.config();
 
-
-
 const createNewContract = asyncHandler(async ({fname,
     lname,
     eventtype,
@@ -86,4 +84,14 @@ const archiveAContract = asyncHandler(async (existingContract) => {
     await Contract.deleteOne({ _id: existingContract._id });
 })
 
-export { createNewContract, updateAContract, archiveAContract };
+const retrieveAllContracts = asyncHandler(async () => {
+    const contracts = await Contract.find()
+    return contracts
+})
+
+const retrieveAllArchivedContracts = asyncHandler(async () => {
+    const contracts = await ArchivedContract.find()
+    return contracts
+})
+
+export { createNewContract, updateAContract, archiveAContract, retrieveAllContracts, retrieveAllArchivedContracts };
