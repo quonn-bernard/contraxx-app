@@ -2,16 +2,22 @@ import {
   connectMemoryDB,
   dropMemoryDB,
 } from "../../../../backend/utils/test-utils/mongoTestingDB.js";
-import { createNewContract } from "../../../../backend/services/contract.js";
+import {
+  createNewContract,
+  archiveAContract,
+  retrieveAllContracts,
+  retrieveAllArchivedContracts,
+} from "../../../../backend/services/contract.js";
 import {
   incompleteContractInfo,
   fakeContractInfo,
 } from "../../../../backend/utils/fixtures/fakeContract.js";
-beforeAll(async () => {
+
+beforeEach(async () => {
   await connectMemoryDB();
 });
 
-afterAll(async () => {
+afterEach(async () => {
   await dropMemoryDB();
 });
 
@@ -27,3 +33,20 @@ test("createNewContract function should create new contract", async () => {
   expect(newContract.rentalfeatures).toEqual(fakeContractInfo.rentalfeatures);
   expect(newContract).toBeInstanceOf(Object);
 });
+
+test("retreiveAllContracts method should return an array of all contracts", async () => {
+  createNewContract(fakeContractInfo);
+  const contracts = await retrieveAllContracts();
+  expect(contracts).toBeInstanceOf(Array);
+  expect(contracts).toHaveLength(1);
+});
+
+test("retreiveAllArchivedContracts method should return an array of archived contracts", async () => {
+  archiveAContract(newContract)
+  let newContract = await createNewContract(fakeContractInfo);
+  const contracts = await retrieveAllArchivedContracts()
+  expect(contracts).toBeInstanceOf(Array)
+  expect(contracts).toHaveLength(1)
+})
+
+
