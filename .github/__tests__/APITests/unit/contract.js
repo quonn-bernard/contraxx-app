@@ -2,7 +2,12 @@ import {
   connectMemoryDB,
   dropMemoryDB,
 } from "../../../../backend/utils/test-utils/mongoTestingDB.js";
-import { createNewContract, archiveAContract, retrieveAllContracts, retrieveAllArchivedContracts } from "../../../../backend/services/contract.js";
+import {
+  createNewContract,
+  archiveAContract,
+  retrieveAllContracts,
+  retrieveAllArchivedContracts,
+} from "../../../../backend/services/contract.js";
 import {
   incompleteContractInfo,
   fakeContractInfo,
@@ -30,15 +35,15 @@ test("createNewContract function should create new contract", async () => {
 });
 
 test("retreiveAllContracts method should return an array of all contracts", async () => {
-  createNewContract(fakeContractInfo); 
-  const contracts = await retrieveAllContracts()
-   expect(contracts).toBeInstanceOf(Array)
-   expect(contracts).toHaveLength(1)
-})
+  createNewContract(fakeContractInfo);
+  const contracts = await retrieveAllContracts();
+  expect(contracts).toBeInstanceOf(Array);
+  expect(contracts).toHaveLength(1);
+});
 
 test("retreiveAllArchivedContracts method should return an array of archived contracts", async () => {
-  let newContract = await createNewContract(fakeContractInfo);
   archiveAContract(newContract)
+  let newContract = await createNewContract(fakeContractInfo);
   const contracts = await retrieveAllArchivedContracts()
   expect(contracts).toBeInstanceOf(Array)
   expect(contracts).toHaveLength(1)

@@ -41,7 +41,6 @@ test("User created with an email that already exists show throw a duplicate reso
   );
 });
 
-
 //Tests user login funcitonality via the authenticateUser function
 
 test("AuthenticateUser function should throw proper error message if non-existant email address is entered", async () => {
