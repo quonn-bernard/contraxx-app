@@ -7,11 +7,14 @@ import {
   archiveAContract,
   retrieveAllContracts,
   retrieveAllArchivedContracts,
+  updateAContract
 } from "../../../../backend/services/contract.js";
 import {
   incompleteContractInfo,
   fakeContractInfo,
+  updateContractInfo
 } from "../../../../backend/utils/fixtures/fakeContract.js";
+import Contract from "../../../../backend/models/contractModel.js";
 
 beforeEach(async () => {
   await connectMemoryDB();
@@ -47,6 +50,13 @@ test("retreiveAllArchivedContracts method should return an array of archived con
   const contracts = await retrieveAllArchivedContracts()
   expect(contracts).toBeInstanceOf(Array)
   expect(contracts).toHaveLength(1)
+})
+
+test("updateAContract method should return updated contract", async () => {
+  let newContract = await createNewContract(fakeContractInfo);
+  await updateAContract(newContract._id.toString(), updateContractInfo)
+  const currentContract = await Contract.findOne({_id: newContract._id})
+  expect(currentContract.fname).toEqual(updateContractInfo.fname)
 })
 
 
