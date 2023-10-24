@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { register, reset } from "../../features/auth/authSlice.js";
 import HeaderSubHeaderCombo from "../../components/HeaderSubHeaderCombo.js";
-
+import Form from "../../components/Form.js";
 const Registration = () => {
   const [formdata, setFormData] = useState({
     fname: "",
@@ -12,14 +12,14 @@ const Registration = () => {
     password: "",
   });
 
-  const { fname, lname, email, password } = formdata;
+  // const { fname, lname, email, password } = formdata;
 
   // const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.auth
-  );
+  // const { user, isLoading, isError, isSuccess, message } = useSelector(
+  //   (state) => state.auth
+  // );
 
   useEffect(() => {
     dispatch(
@@ -39,6 +39,7 @@ const Registration = () => {
         header={"EVENTRAXX"}
         subHeader={"Create an account below"}
       />
+      <Form>poppppp</Form>
     </>
   );
 };
