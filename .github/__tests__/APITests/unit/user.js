@@ -70,7 +70,6 @@ test("AuthenticateUser function should throw proper error message if email input
     ).rejects.toThrow("Email and password required!");
   });
 
-
 test("AuthenticateUser function should return object containing email, password, and token", async () => {
   const authenticatedUser = await authenticateUser({
     email: correctEmail,
