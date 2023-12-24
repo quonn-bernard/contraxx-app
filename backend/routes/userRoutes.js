@@ -6,4 +6,4 @@ import { tryCatch } from "../utils/tryCatch.js";
 userRouter.post("/registration", tryCatch(registerUser));
 userRouter.post("/login", tryCatch(loginUser));
 
-export default userRouter
+export default userRouter``
