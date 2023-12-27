@@ -1,7 +1,7 @@
 import express from "express";
-const contractRouter = express.Router()
 import { createContract, updateContract, archiveContract, getContracts, getArchivedContracts } from "../controllers/contract.js";
 import { tryCatch } from "../utils/tryCatch.js";
+const contractRouter = express.Router()
 
 contractRouter.post("/", tryCatch(createContract))
 contractRouter.put("/:id", tryCatch(updateContract))
